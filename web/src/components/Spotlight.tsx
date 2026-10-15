@@ -9,7 +9,7 @@ export function Spotlight({ s, meta, labels }: { s: SliceData["spotlight"]; meta
   return (
     <aside className="spot wide" aria-label="Busiest wallet">
       <div className="spot-text">
-        <p className="spot-h">The busiest wallet in the {meta.label} week</p>
+        <p className="spot-h">Largest paying wallet, {meta.label} week</p>
         <p className="spot-addr">
           <a className="addr" href={`https://basescan.org/address/${s.payer}`} target="_blank" rel="noreferrer">{short(s.payer)}</a>
           {" "}paid {s.top_payee_name ?? short(s.top_payee)}{s.payees > 1 ? ` and ${s.payees - 1} other payee${s.payees > 2 ? "s" : ""}` : " and no one else"}.
