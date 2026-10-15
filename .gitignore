@@ -1,0 +1,10 @@
+.env
+.venv/
+__pycache__/
+/data/
+/logs/
+*.duckdb
+web/node_modules/
+web/.next/
+web/.vercel/
+config/ref/facilitators/list.txt
