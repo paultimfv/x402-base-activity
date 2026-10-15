@@ -12,6 +12,8 @@ CHAINALYSIS = [("Q1", 13.7e6), ("Q2", 17.6e6), ("Q3", 23.3e6)]
 
 # registry description -> category (manual labels.csv overrides)
 RULES = [
+    ("API gateways", r"gateway|marketplace|thousands of apis|unified api|api hub|all x402|pay per call in usdc"),
+    ("Agent games", r"\bgame\b|territory|arena"),
     ("Infra & testing", r"health|probe|\btest|ping|heartbeat|status check"),
     ("AI inference", r"chat|completion|llm|inference|\bmodel|gpt|claude|image gen|generate (an )?image|agent verdict|ai-written|\bai\b"),
     ("Mints & drops", r"\bmint|nft|airdrop|launch a token|claim"),
@@ -34,6 +36,17 @@ def main():
 
     reg = q("select payee, top_domain, domains, sample_description from registry_payee")
     reg["auto_cat"] = reg["sample_description"].map(categorize)
+    # x402scan origins for payees the Coinbase registry doesn't list
+    xs_path = ROOT / "config" / "x402scan_origins.parquet"
+    if xs_path.exists():
+        xs = pd.read_parquet(xs_path)
+        xs = xs[xs.n_origins > 0].copy()
+        xs["top_domain"] = xs["origin"].str.replace(r"^https?://", "", regex=True).str.rstrip("/")
+        xs["sample_description"] = (xs["title"].fillna("") + " " + xs["description"].fillna("")).str.strip()
+        xs["auto_cat"] = xs["sample_description"].map(categorize)
+        xs["domains"] = xs["top_domain"]
+        xs = xs[~xs.payee.isin(set(reg.payee))][["payee", "top_domain", "domains", "sample_description", "auto_cat"]]
+        reg = pd.concat([reg, xs], ignore_index=True)
     labels = q("select * from labels")
     fac = pd.read_csv(ROOT / "config" / "facilitators.csv")
 

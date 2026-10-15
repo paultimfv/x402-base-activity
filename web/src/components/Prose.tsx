@@ -16,7 +16,8 @@ export function Sources() {
           <a href="https://github.com/Merit-Systems/x402scan/tree/main/packages/external/facilitators/src/facilitators" target="_blank" rel="noreferrer">x402scan facilitator list</a>.
         </li>
         <li>Payee names: <code>payTo</code> addresses in the{" "}
-          <a href="https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources" target="_blank" rel="noreferrer">Coinbase x402 discovery registry</a>, plus manual labels.
+          <a href="https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources" target="_blank" rel="noreferrer">Coinbase x402 discovery registry</a>, the{" "}
+          <a href="https://www.x402scan.com" target="_blank" rel="noreferrer">x402scan</a> origin index, plus manual labels.
         </li>
         <li>Every address links to Basescan.</li>
       </ul>

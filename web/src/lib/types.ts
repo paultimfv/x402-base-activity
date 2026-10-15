@@ -67,6 +67,8 @@ export const CATEGORY_COLOR: Record<string, string> = {
   "Content & paywalls": "var(--c-content)",
   "Infra & testing": "var(--c-infra)",
   "Agent-to-agent jobs": "var(--c-agent)",
+  "API gateways": "var(--c-gw)",
+  "Agent games": "var(--c-game)",
   "Unlisted per-call services": "var(--c-percall)",
   "Likely non-x402 transfers": "var(--c-nonx)",
   Unlabeled: "var(--c-unknown)",

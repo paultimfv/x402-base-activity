@@ -20,6 +20,8 @@
   --c-agent: #c45a7c;
   --c-percall: #7fa4e8;
   --c-nonx: #3b4652;
+  --c-gw: #1f6f9e;
+  --c-game: #8f9a2e;
 
   --measure: 680px;
   --wide: 1080px;
@@ -46,6 +48,10 @@
     --c-agent: #d97a9a;
     --c-percall: #3f69b8;
     --c-nonx: #8b96a1;
+  --c-gw: #4aa3d6;
+  --c-game: #b8c24f;
+    --c-gw: #4aa3d6;
+    --c-game: #b8c24f;
     color-scheme: dark;
   }
 }
