@@ -7,7 +7,7 @@ const sans = IBM_Plex_Sans({ variable: "--font-sans", subsets: ["latin"], weight
 const mono = IBM_Plex_Mono({ variable: "--font-mono", subsets: ["latin"], weight: ["400", "500"] });
 
 export const metadata: Metadata = {
-  title: "x402 on Base",
+  title: "What's Happening on X402?",
   description:
     "x402 USDC payments on Base from four sample weeks of onchain data: payees, payers, payment sizes and facilitators.",
 };

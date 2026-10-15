@@ -19,7 +19,7 @@ export default function Report({ data }: { data: Dataset }) {
   return (
     <main className="page">
       <header className="mast col">
-        <h1>x402 payments on Base</h1>
+        <h1>What&apos;s Happening on X402?</h1>
         <p className="dek">USDC payments settled through x402 on Base, from four sample weeks of onchain data.</p>
       </header>
 
