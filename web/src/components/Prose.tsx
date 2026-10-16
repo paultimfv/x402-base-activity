@@ -17,15 +17,19 @@ export function Sources() {
         </li>
         <li>Payee names: <code>payTo</code> addresses in the{" "}
           <a href="https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources" target="_blank" rel="noreferrer">Coinbase x402 discovery registry</a>, the{" "}
+          <code>/discovery/resources</code> endpoints of PayAI, Dexter, three.ws, UltravioletaDAO and AnySpend, the{" "}
           <a href="https://www.x402scan.com" target="_blank" rel="noreferrer">x402scan</a> origin index, plus manual labels.
         </li>
+        <li>Routed payments: auth-capture payments are assigned to the merchant in the Commerce Payments escrow event; payments through a pass-through router (it forwards the full amount in the same transaction) are assigned to the next hop.</li>
         <li>Every address links to Basescan.</li>
       </ul>
       <h2>Categories for unnamed payees</h2>
       <ul>
         <li><strong>Likely non-x402 transfers:</strong> median payment $1 or more, mostly sent by addresses not on the facilitator list.</li>
         <li><strong>Mints &amp; drops:</strong> 500+ paying wallets, three or fewer payments each.</li>
+        <li><strong>Single-client traffic:</strong> three or fewer paying wallets.</li>
         <li><strong>Unlisted per-call services:</strong> median payment under $0.05.</li>
+        <li><strong>Other x402 services:</strong> named in a registry, no category match.</li>
         <li><strong>Unlabeled:</strong> everything else.</li>
       </ul>
     </section>

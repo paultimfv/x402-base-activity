@@ -22,6 +22,12 @@
   --c-nonx: #3b4652;
   --c-gw: #1f6f9e;
   --c-game: #8f9a2e;
+  --c-other: #6c8aa8;
+  --c-router: #a0662f;
+  --c-fluxa: #4f7d6b;
+  --c-single: #9a8f80;
+  --c-cbmerch: #3d5a99;
+  --c-meridian: #7a5c8f;
 
   --measure: 680px;
   --wide: 1080px;
@@ -50,8 +56,20 @@
     --c-nonx: #8b96a1;
   --c-gw: #4aa3d6;
   --c-game: #b8c24f;
+  --c-other: #7d9bb8;
+  --c-router: #c98a4f;
+  --c-fluxa: #6fa58f;
+  --c-single: #8a8073;
+  --c-cbmerch: #6f8fd1;
+  --c-meridian: #a083b5;
     --c-gw: #4aa3d6;
     --c-game: #b8c24f;
+    --c-other: #7d9bb8;
+    --c-router: #c98a4f;
+    --c-fluxa: #6fa58f;
+    --c-single: #8a8073;
+    --c-cbmerch: #6f8fd1;
+    --c-meridian: #a083b5;
     color-scheme: dark;
   }
 }
@@ -175,8 +193,8 @@ figure.fig figcaption { font: 13px/1.5 var(--font-sans); color: var(--ink-3); ma
 /* tables */
 .tbl-wrap { overflow-x: auto; }
 table.tbl { width: 100%; border-collapse: collapse; font: 13.5px/1.35 var(--font-sans); font-variant-numeric: tabular-nums; }
-.tbl th { text-align: right; font-weight: 500; color: var(--ink-3); padding: 6px 8px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
-.tbl td { text-align: right; padding: 9px 8px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+.tbl th { text-align: right; font-weight: 500; color: var(--ink-3); padding: 6px 6px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+.tbl td { text-align: right; padding: 9px 6px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
 .tbl th:first-child, .tbl td:first-child, .tbl th.l, .tbl td.l { text-align: left; }
 .tbl tr[data-dim="true"] td { opacity: .35; }
 .tbl .name { font-weight: 500; color: var(--ink); }
@@ -284,3 +302,5 @@ code { font-family: var(--font-mono), ui-monospace, monospace; font-size: 0.82em
 .mast { padding: 56px 0 24px; }
 .mast h1 { font-size: clamp(34px, 5vw, 54px); max-width: none; margin-bottom: 12px; }
 .mast .dek { font-size: 18px; }
+.tbl td:first-child .sub { max-width: 270px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (max-width: 720px) { .tbl td:first-child .sub { max-width: 200px; } }

@@ -38,8 +38,10 @@ def main():
     reg["auto_cat"] = reg["sample_description"].map(categorize)
     # x402scan origins for payees the Coinbase registry doesn't list
     xs_path = ROOT / "config" / "x402scan_origins.parquet"
-    if xs_path.exists():
-        xs = pd.read_parquet(xs_path)
+    bz_path = ROOT / "config" / "x402scan_bazaar.parquet"
+    if xs_path.exists() or bz_path.exists():
+        parts = [pd.read_parquet(x)[["payee", "n_origins", "origin", "title", "description"]] for x in (xs_path, bz_path) if x.exists()]
+        xs = pd.concat(parts, ignore_index=True).dropna(subset=["origin"]).drop_duplicates("payee")
         xs = xs[xs.n_origins > 0].copy()
         xs["top_domain"] = xs["origin"].str.replace(r"^https?://", "", regex=True).str.rstrip("/")
         xs["sample_description"] = (xs["title"].fillna("") + " " + xs["description"].fillna("")).str.strip()
@@ -47,6 +49,17 @@ def main():
         xs["domains"] = xs["top_domain"]
         xs = xs[~xs.payee.isin(set(reg.payee))][["payee", "top_domain", "domains", "sample_description", "auto_cat"]]
         reg = pd.concat([reg, xs], ignore_index=True)
+    # discovery endpoints of other facilitators (PayAI, Dexter, three.ws, ...)
+    dp = ROOT / "config" / "discovery_payto.parquet"
+    if dp.exists():
+        ds = pd.read_parquet(dp)
+        ds = ds[~ds.payto.isin(set(reg.payee))]
+        if len(ds):
+            g = ds.groupby("payto").agg(top_domain=("domain", lambda x: x.mode().iloc[0]),
+                                        domains=("domain", lambda x: ", ".join(sorted(set(x)))[:200]),
+                                        sample_description=("description", "first")).reset_index().rename(columns={"payto": "payee"})
+            g["auto_cat"] = g["sample_description"].map(categorize)
+            reg = pd.concat([reg, g], ignore_index=True)
     labels = q("select * from labels")
     fac = pd.read_csv(ROOT / "config" / "facilitators.csv")
 
@@ -61,7 +74,8 @@ def main():
 
     info = reg.merge(labels, on="payee", how="outer").merge(payee_fac, on="payee", how="outer")
     info["category_final"] = info["category"].fillna(info["auto_cat"]).fillna("Unlabeled")
-    info["name_final"] = info["name"].fillna(info["top_domain"])
+    td = info["top_domain"].where(info["top_domain"].fillna("").str.len() > 0)
+    info["name_final"] = info["name"].where(info["name"].fillna("").str.len() > 0).fillna(td)
     con_info = duckdb.connect()
     if "fac_share" not in info: info["fac_share"] = None
     con_info.register("info", info[["payee", "category_final", "name_final", "top_domain", "notes", "facilitator", "fac_share"]]
@@ -72,25 +86,35 @@ def main():
            "slices": [], "bySlice": {}, "notes": {}}
 
     for sid, label, start in SLICES:
-        p = q(f"select payee, payer, amount_usd, block_time from payments where slice = '{sid}'")
+        p = q(f"select payee, payer, amount_usd, block_time, via from payments where slice = '{sid}'")
         if p.empty: continue
         con_info.register("p", p)
         pp = con_info.sql("""
             select p.payee, count(*) as n, count(distinct payer) as payers, median(amount_usd) as med, sum(amount_usd) as usd,
                    any_value(i.name) as name, coalesce(any_value(i.category), 'Unlabeled') as category,
                    any_value(i.domain) as domain, any_value(i.notes) as notes, any_value(i.facilitator) as facilitator,
-                   bool_or(i.domain is not null) as in_reg, any_value(i.fac_share) as fac_share
+                   bool_or(i.domain is not null) as in_reg, any_value(i.fac_share) as fac_share,
+                   mode(p.via) as via
             from p left join info i using (payee) group by 1 order by n desc""").df()
         total = len(p)
         # behavioral categories for payees nobody has named (rules shown on the page)
         def behave(r):
             if r.category != "Unlabeled": return r.category
+            nm = r["name"]                     # r.name would be the row's index label, not the column
+            if isinstance(nm, str) and nm: return "Other x402 services"   # named in a registry, no keyword match
+            via = r.via if isinstance(r.via, str) else ""
+            if via == "auth-capture escrow": return "Coinbase checkout merchants (unnamed)"
+            if via == "FluxA router": return "Routed via FluxA (service unnamed)"
+            if via == "Meridian fee proxy": return "Routed via Meridian (service unnamed)"
             fs = r.fac_share if pd.notna(r.fac_share) else None
             if r.med >= 1 and fs is not None and fs < 0.5: return "Likely non-x402 transfers"
             if r.n / r.payers <= 3 and r.payers >= 500: return "Mints & drops"
+            if r.payers <= 3: return "Single-client traffic"
             if r.med < 0.05: return "Unlisted per-call services"
             return "Unlabeled"
         pp["category"] = pp.apply(behave, axis=1)
+        dbg = ROOT / "data" / f"payee_categories_{sid}.parquet"
+        pp[["payee", "n", "payers", "med", "name", "category", "via", "fac_share"]].to_parquet(dbg, index=False)
         cats = pp.groupby("category").agg(payments=("n", "sum"), usd=("usd", "sum"), payees=("payee", "count")).reset_index()
         con_info.register("pcat", pp[["payee", "category"]])
         cat_payers = con_info.sql("""select c.category, count(distinct payer) as payers
@@ -134,7 +158,9 @@ def main():
                              "payments": int(r.n), "share": float(r.n / total), "payers": int(r.payers),
                              "per_payer": float(r.n / r.payers), "median_usd": float(r.med), "usd": float(r.usd),
                              "in_registry": bool(r.in_reg), "facilitator": r.facilitator if isinstance(r.facilitator, str) else None,
-                             "note": r.notes if isinstance(r.notes, str) else None})
+                             "note": r.notes if isinstance(r.notes, str) else
+                                     (f"settled by {r.facilitator}" if not isinstance(r.name, str) and isinstance(r.facilitator, str)
+                                      and r.facilitator != "Not listed" else None)})
 
         # spotlight: the single busiest paying wallet of the week
         tp = p.groupby("payer").size().sort_values(ascending=False)

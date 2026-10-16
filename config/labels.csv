@@ -12,3 +12,43 @@ payee,name,category,notes
 0x9fb365e4e9385e2a39febad70368267e6f571d9a,OneShot Agent,Data & search APIs,web page to markdown
 0x52e29e0d2aa49bfbfc548c0a9f2196f4aa51f3ea,OneSource,Data & search APIs,token balance API
 0xef4364fe4487353df46eb7c811d4fac78b856c7f,Virtuals agent payments,Agent-to-agent jobs,settled by Virtuals Protocol facilitator; pays out to many agent wallets
+0x0e3df9510de65469c4518d7843919c0b8c7a7757,x402 auth-capture escrow,Payment routers & escrow,Base Commerce Payments escrow; address in x402-foundation/x402 auth-capture spec
+0x4020806089470a89826cb9fb1f4059150b550004,x402 batch settlement,Payment routers & escrow,address in x402-foundation/x402 batch-settlement spec
+0x998d7c178a1f9607b47ea3a8e22426451b3ce707,Across SpokePool,Likely non-x402 transfers,Across bridge on Base (across-protocol/contracts)
+0x35e6cb35647076539f8c4d14f51e03841bcd1f0e,WalletConnect Pay,Likely non-x402 transfers,address in WalletConnect Pay test data (gemwalletcom/wallet)
+0x31d058b5e02c8b01c749e6844d86cdd3f2962cd7,Coinflow,Likely non-x402 transfers,Pimlico 4337-stats entity registry
+0xb3ed726d24af7c3ffbf04219a78506170155641b,ZEAM Pass,Other x402 services,payTo in zeam-labs/pass docs
+0xb04994fbca786ae03ce3354fed2435c2e04020ec,m2mcent,AI inference,api.m2mcent.com (public sellers lookup)
+0x4c3f2e391498e2590bd327a7a1caa68dd42c4647,OpenRouter,AI inference,credits via Coinbase Payments x402 checkout (auth-capture payTo for OpenRouter Inc)
+0xfe802b35182f49778eec14db3153fcb8b92a47ee,,,reached through FluxA router 0x9c95…e299
+0x85a780e439b71cddf0861e3d254a22f50ad5109b,AWE X402 Market (inferred),API gateways,inferred: 99 of 117 payers also pay AWE X402 Market (world.fun)
+0xb6e3aeb78c17f1debced6d7aebab33cba9744b1f,Axiom (inferred),Other x402 services,inferred: 16 of 19 payers also pay Axiom
+0x8e7769d440b3460b92159dd9c6d17302b036e2d6,Meridian fee proxy,Payment routers & escrow,Meridian address in DefiLlama x402 adapter; keeps 1% and forwards to the service
+0x73fc659cd5494e69852be8d9d23fe05aab14b29b,Teneo,Payment routers & escrow,Teneo Facilitator x402 settlement service (x402scan)
+0x8a12157b27c22fb239e558dc3cb43c7d1a8c0881,KORUS,Content & paywalls,interactive music remixing platform (x402scan)
+0xf732ea490c5766071785a2310523f7fa2cebb829,Pocket Network,API gateways,pay-per-call access to Pocket Network services (x402scan)
+0x44adc7d3199486730d6346f2dc2424de97124700,Storm Station 247,Data & search APIs,live US weather and alerts (x402scan)
+0x17cd53c04d707ef0dd615ef56c633f02915a7905,Keyring Agent,AI inference,DeFi assistant agent (x402scan)
+0xa6a8736f18f383f1cc2d938576933e5ea7df01a1,Neynar,Data & search APIs,Farcaster developer platform (x402scan)
+0x8bc2aecdd86097f74a1a5fa17764108d9a683c8c,DatapackVibe,Data & search APIs,market.datapackvibe.com tools (registry)
+0x7d2ceb7a0e0c39a3d0f7b5b491659fde4bb7bcfe,BaseHub,Agent games,games and XP on Base via Farcaster (x402scan)
+0x101cd32b9beee93845ead7bc604a5f1873330acf,pinion,Other x402 services,operating primitive for paid autonomous software (x402scan)
+0x66c40946b0dffd04be467e18309857307ecd37cb,Polymer,Infra & testing,api.polymer.zone (x402scan origin)
+0xabf4fabd7c416fb67202e5f9002389fc75e2a9d0,Agent402,API gateways,500+ pay-per-call tools for agents (x402scan)
+0xdadc335482ad545296fd7b28518a251ffcbeb9df,NetIntel,Data & search APIs,network intelligence API (x402scan)
+0xd8f98cb5b5234e4b8ddd7ec17e6c600b08a030e0,Axiom,Other x402 services,payTo in MeltedMindz/axiom-public x402-register script
+0x1e8e93cb91778e5b1a3639706789195a838960f8,AnySpend,Payment routers & escrow,x402.anyspend.com (x402scan origin)
+0x836be278f1739fb4308091cd1852f7971bc19ee2,MagentLab,Data & search APIs,api.magentlab.com clinical calculators (registry)
+0x66d7c2f952362bfb24fd7f02a9bec9c754ea83bc,Strale,API gateways,250+ tested data capabilities for agents (x402scan)
+0x3c74ce3f8566ff04b312320e7c264a691c409992,x402.press Speech,AI inference,speech.x402.press (x402scan)
+0x86fa14c0edcaa2966e1c2c7a1eb20bea0af09537,AWE X402 Market,API gateways,x402 service launch platform (x402scan)
+0x8aab9a6d28e9aba2a15a613c90f24f352f0cce15,Snowpack,Data & search APIs,weather and snow data (x402scan)
+0x3e7c9ca818f713f19e126e3b7b37b47dc1411570,OpenWeb Ninja,Data & search APIs,40+ web data and search APIs (x402scan)
+0x07f067959297767c887dbfa3c72379c66e82a045,StableStudio,AI inference,pay-per-generation image and video (x402scan)
+0x6e007731870ede419cfb31889cd5c4493cecb04c,BlockRun,AI inference,second BlockRun payTo (x402scan)
+0x8afbd522f8a16bea184b41c593b8925a66830bc6,DDG Agent Services,Other x402 services,agent-payable services (x402scan)
+0x8a598a28a435fe44d31854251b1c88d0781ea822,Reloadpi,Other x402 services,gift card and voucher brands (registry)
+0x06dff3c8380b5d1799874ada903fc3422882fd6f,StableUpload,Infra & testing,pay-per-upload file hosting (x402scan)
+0x5cf753ed23f2636e447ca8b9ce8c7cb1a945e87b,SharkQuant,AI inference,structured extraction from text (registry)
+0xb9f06d2734b7e9d7b21b64c4d8b95bd774b71acf,Vextorium,API gateways,552 pay-per-call data APIs (x402scan)
+0x3070fbb3803819fb5bdfe9286fdc6325a877fa85,x402stock,Data & search APIs,US stock market data for agents (x402scan)

@@ -75,7 +75,7 @@ export function PayeeTable({ rows, active, limit = 15 }: { rows: PayeeRow[]; act
               <td className="l">
                 <span className="sw" style={{ background: colorFor(r.category) }} />
                 <span className="name">{r.name ?? (r.category === "Unlabeled" ? "Unidentified" : r.category.replace(/s$/, "").replace(/ services?$/, " service"))}</span>
-                <div className="sub">
+                <div className="sub" title={r.note ?? r.domain ?? undefined}>
                   <a className="addr" href={`https://basescan.org/address/${r.payee}`} target="_blank" rel="noreferrer">{short(r.payee)}</a>
                   {r.note ? <> · {r.note}</> : r.domain ? <> · {r.domain}</> : null}
                 </div>
