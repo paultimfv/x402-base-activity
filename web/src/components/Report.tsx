@@ -5,7 +5,6 @@ import { CompositionBar, PayeeTable, HBars, Cadence } from "./charts";
 import { SliceMix } from "./SliceMix";
 import { n0, pct, usd } from "@/lib/fmt";
 import { Sources } from "./Prose";
-import { Spotlight } from "./Spotlight";
 import { ThemeToggle } from "./ThemeToggle";
 
 export default function Report({ data }: { data: Dataset }) {
@@ -51,7 +50,6 @@ export default function Report({ data }: { data: Dataset }) {
         </div>
       </section>
 
-      {d.spotlight && <Spotlight s={d.spotlight} meta={meta} labels={labels} />}
 
       <figure className="fig wide">
         <p className="figt">Top payees</p>
