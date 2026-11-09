@@ -1,7 +1,8 @@
 .env
 .venv/
 __pycache__/
-/data/
+/data/*
+!/data/live/
 /logs/
 *.duckdb
 web/node_modules/

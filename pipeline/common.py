@@ -64,6 +64,7 @@ class RPC:
             return self.call("eth_getLogs", [{"address": address, "topics": topics,
                                               "fromBlock": hex(lo), "toBlock": hex(hi)}])
         except RuntimeError as e:
-            if "10000 results" not in str(e) or hi <= lo: raise
+            msg = str(e)   # Infura: "10000 results"; publicnode: "max results 20000"; others: "too many"/"range"
+            if not any(k in msg for k in ("10000 results", "max results", "too many", "query returned more")) or hi <= lo: raise
             mid = (lo + hi) // 2
             return self.logs(topics, lo, mid, address) + self.logs(topics, mid + 1, hi, address)

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import type { Dataset, SliceId } from "@/lib/types";
 import { CompositionBar, PayeeTable, HBars, Cadence } from "./charts";
 import { SliceMix } from "./SliceMix";
@@ -7,7 +7,7 @@ import { n0, pct, usd } from "@/lib/fmt";
 import { Sources } from "./Prose";
 import { ThemeToggle } from "./ThemeToggle";
 
-export default function Report({ data }: { data: Dataset }) {
+export default function Report({ data, live }: { data: Dataset; live?: ReactNode }) {
   const [slice, setSlice] = useState<SliceId>("q3");
   const [cat, setCat] = useState<string | null>(null);
   const meta = data.slices.find((s) => s.id === slice)!;
@@ -19,7 +19,7 @@ export default function Report({ data }: { data: Dataset }) {
     <main className="page">
       <header className="mast col">
         <h1>What&apos;s Happening on X402?</h1>
-        <p className="dek">USDC payments settled through x402 on Base, from four sample weeks of onchain data.</p>
+        <p className="dek">USDC payments settled through x402 on Base: the last 30 days live, then four sample weeks of onchain data in depth.</p>
       </header>
 
       <nav className="switch" aria-label="Sample week">
@@ -32,6 +32,8 @@ export default function Report({ data }: { data: Dataset }) {
           <ThemeToggle />
         </div>
       </nav>
+
+      {live}
 
       <section aria-label="Payments by category">
         <div className="comp wide" style={{ marginBottom: 0 }}>
