@@ -71,6 +71,17 @@ def btime(rpc, b):
     return _bt[b]
 
 
+def chunk(rpc, b, e):
+    rows = fetch(rpc, b, e)
+    sample = [r for r in rows if int(r["tx"], 16) % SAMPLE_MOD == 0]
+    senders = {}
+    for i in range(0, len(sample), 50):
+        txs = rpc.batch([("eth_getTransactionByHash", [r["tx"]]) for r in sample[i:i + 50]])
+        for r, t in zip(sample[i:i + 50], txs):
+            senders[r["tx"]] = (t or {}).get("from", "").lower()
+    return rows, senders, btime(rpc, b), btime(rpc, e)
+
+
 def main():
     rpc, fac = RPC(URL), facilitators()
     state = json.loads(STATE.read_text()) if STATE.exists() else {"last_block": None, "days": {}}
@@ -85,14 +96,16 @@ def main():
     b = lo
     while b <= head and time.time() < BUDGET:
         e = min(b + CHUNK - 1, head)
-        rows = fetch(rpc, b, e)
-        sample = [r for r in rows if int(r["tx"], 16) % SAMPLE_MOD == 0]
-        senders = {}
-        for i in range(0, len(sample), 50):
-            txs = rpc.batch([("eth_getTransactionByHash", [r["tx"]]) for r in sample[i:i + 50]])
-            for r, t in zip(sample[i:i + 50], txs):
-                senders[r["tx"]] = (t or {}).get("from", "").lower()
-        t_lo, t_hi = btime(rpc, b), btime(rpc, e)
+        try:
+            rows, senders, t_lo, t_hi = chunk(rpc, b, e)
+        except Exception as err:   # public RPC hiccup: retry once, else stop here and keep what we have
+            print(f"live: chunk {b:,} failed ({str(err)[:120]}), retrying", flush=True)
+            time.sleep(5)
+            try:
+                rows, senders, t_lo, t_hi = chunk(rpc, b, e)
+            except Exception as err:
+                print(f"live: stopping at block {b:,}: {str(err)[:120]}", flush=True)
+                break
         ts = lambda blk: t_lo + (blk - b) * (t_hi - t_lo) / max(e - b, 1)   # linear within a ~1 h chunk
         for r in rows:
             d = dt.datetime.fromtimestamp(ts(r["block"]), dt.timezone.utc).strftime("%Y-%m-%d")
