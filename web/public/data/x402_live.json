@@ -1,7 +1,7 @@
 {
- "updatedAt": "2026-11-12T05:34+00:00",
- "throughBlock": 56356420,
- "throughTime": "2026-11-12T05:34+00:00",
+ "updatedAt": "2026-11-12T07:47+00:00",
+ "throughBlock": 56396135,
+ "throughTime": "2026-11-12T07:46+00:00",
  "window": {
   "from": "2026-11-05",
   "to": "2026-11-11"
@@ -299,12 +299,12 @@
   },
   {
    "day": "2026-11-12",
-   "payments": 19805,
-   "usd": 177082.72,
-   "payers": 3634,
+   "payments": 27431,
+   "usd": 226647.76,
+   "payers": 4460,
    "median_usd": 0.002,
-   "facilitator_share": 0.811,
-   "top_payee_share": 0.134,
+   "facilitator_share": 0.815,
+   "top_payee_share": 0.128,
    "top_payee": "claw402 \u2014 x402 API Payment Gateway"
   }
  ],
