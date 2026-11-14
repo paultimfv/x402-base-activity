@@ -1,7 +1,7 @@
 {
- "updatedAt": "2026-11-14T16:13+00:00",
- "throughBlock": 57411915,
- "throughTime": "2026-11-14T16:12+00:00",
+ "updatedAt": "2026-11-14T16:31+00:00",
+ "throughBlock": 57417425,
+ "throughTime": "2026-11-14T16:31+00:00",
  "window": {
   "from": "2026-11-07",
   "to": "2026-11-13"
@@ -299,12 +299,12 @@
   },
   {
    "day": "2026-11-14",
-   "payments": 160868,
-   "usd": 1542388.55,
-   "payers": 5111,
+   "payments": 174121,
+   "usd": 1563812.94,
+   "payers": 5351,
    "median_usd": 0.02,
-   "facilitator_share": 0.913,
-   "top_payee_share": 0.695,
+   "facilitator_share": 0.918,
+   "top_payee_share": 0.713,
    "top_payee": "AX1"
   }
  ],
