@@ -1,22 +1,12 @@
 {
- "updatedAt": "2026-11-18T21:19+00:00",
- "throughBlock": 59231144,
- "throughTime": "2026-11-18T21:16+00:00",
+ "updatedAt": "2026-11-19T03:09+00:00",
+ "throughBlock": 59335677,
+ "throughTime": "2026-11-19T03:05+00:00",
  "window": {
-  "from": "2026-11-11",
-  "to": "2026-11-17"
+  "from": "2026-11-12",
+  "to": "2026-11-18"
  },
  "daily": [
-  {
-   "day": "2026-10-20",
-   "payments": 253853,
-   "usd": 1770544.67,
-   "payers": 0,
-   "median_usd": 0.02,
-   "facilitator_share": 0.269,
-   "top_payee_share": 0.331,
-   "top_payee": "0xaf36084a4dc0ce760a6dcfa46cf129e140c92aa9"
-  },
   {
    "day": "2026-10-21",
    "payments": 275279,
@@ -299,13 +289,23 @@
   },
   {
    "day": "2026-11-18",
-   "payments": 334660,
-   "usd": 1683794.79,
-   "payers": 8472,
+   "payments": 370187,
+   "usd": 1788071.07,
+   "payers": 8844,
    "median_usd": 0.005,
-   "facilitator_share": 0.577,
-   "top_payee_share": 0.359,
+   "facilitator_share": 0.61,
+   "top_payee_share": 0.324,
    "top_payee": "0xcac750b0c90e0c62cad130668e6d9500e9146fad"
+  },
+  {
+   "day": "2026-11-19",
+   "payments": 40587,
+   "usd": 73424.97,
+   "payers": 2681,
+   "median_usd": 0.005,
+   "facilitator_share": 0.95,
+   "top_payee_share": 0.382,
+   "top_payee": "AX1"
   }
  ],
  "topPayees7d": [
@@ -313,121 +313,121 @@
    "payee": "0x7284d41b5b852f2bd4c99bdf95043d84452d299c",
    "name": "AX1",
    "category": "AI inference",
-   "payments": 1209363,
-   "usd": 23753.39,
-   "share": 0.6323
+   "payments": 1242929,
+   "usd": 24428.18,
+   "share": 0.5774
   },
   {
    "payee": "0x589a2314a2e05f45e40c4823da3ba58d421db3d8",
    "name": null,
    "category": null,
-   "payments": 110519,
-   "usd": 1582.08,
-   "share": 0.0578
+   "payments": 211536,
+   "usd": 2846.79,
+   "share": 0.0983
+  },
+  {
+   "payee": "0xcac750b0c90e0c62cad130668e6d9500e9146fad",
+   "name": null,
+   "category": null,
+   "payments": 119996,
+   "usd": 0.12,
+   "share": 0.0557
   },
   {
    "payee": "0xa9dd7cc9cbf0e05551332209289f04be36bc2315",
    "name": "claw402 \u2014 x402 API Payment Gateway",
    "category": "x402scan origin",
-   "payments": 78881,
-   "usd": 184.93,
-   "share": 0.0412
+   "payments": 75777,
+   "usd": 183.83,
+   "share": 0.0352
   },
   {
    "payee": "0xa8b2c2594ec5774479749d26105c9fb6cdca1d68",
    "name": null,
    "category": null,
-   "payments": 54630,
-   "usd": 546.3,
-   "share": 0.0286
+   "payments": 54733,
+   "usd": 547.33,
+   "share": 0.0254
   },
   {
    "payee": "0x8b29dabd6fbb5a09dacbc7978eaed66a8540721d",
    "name": "Clash of Coins probe",
    "category": "Infra & testing",
-   "payments": 43474,
-   "usd": 868.38,
-   "share": 0.0227
+   "payments": 43117,
+   "usd": 861.35,
+   "share": 0.02
   },
   {
    "payee": "0x9c955c40dc98fce89a133f402ffbf94070e6e299",
    "name": null,
    "category": null,
-   "payments": 41568,
-   "usd": 41.57,
-   "share": 0.0217
+   "payments": 35413,
+   "usd": 35.41,
+   "share": 0.0165
   },
   {
    "payee": "0x9fb365e4e9385e2a39febad70368267e6f571d9a",
    "name": "OneShot Agent",
    "category": "Data & search APIs",
-   "payments": 32089,
-   "usd": 1245.01,
-   "share": 0.0168
+   "payments": 34012,
+   "usd": 1160.65,
+   "share": 0.0158
   },
   {
    "payee": "0xf732ea490c5766071785a2310523f7fa2cebb829",
    "name": "Pocket Network",
    "category": "API gateways",
-   "payments": 28515,
-   "usd": 142.58,
-   "share": 0.0149
-  },
-  {
-   "payee": "0x524c827cd1d5691817706763fb67574d107578b1",
-   "name": null,
-   "category": null,
-   "payments": 27918,
-   "usd": 1005048.0,
-   "share": 0.0146
-  },
-  {
-   "payee": "0xaf36084a4dc0ce760a6dcfa46cf129e140c92aa9",
-   "name": null,
-   "category": null,
-   "payments": 27918,
-   "usd": 111672.0,
-   "share": 0.0146
+   "payments": 28388,
+   "usd": 141.94,
+   "share": 0.0132
   },
   {
    "payee": "0x325bdf6f7efab24a2210c48c1b64cab2eae1d430",
    "name": "StableEnrich",
    "category": "Data & search APIs",
-   "payments": 22611,
-   "usd": 380.4,
-   "share": 0.0118
+   "payments": 23866,
+   "usd": 405.72,
+   "share": 0.0111
+  },
+  {
+   "payee": "0x524c827cd1d5691817706763fb67574d107578b1",
+   "name": null,
+   "category": null,
+   "payments": 23712,
+   "usd": 853632.0,
+   "share": 0.011
+  },
+  {
+   "payee": "0xaf36084a4dc0ce760a6dcfa46cf129e140c92aa9",
+   "name": null,
+   "category": null,
+   "payments": 23712,
+   "usd": 94848.0,
+   "share": 0.011
   },
   {
    "payee": "0x8612dfdc421f80336cd14e8ef9cb1e765db5ab88",
    "name": null,
    "category": null,
-   "payments": 14178,
-   "usd": 2085889.87,
-   "share": 0.0074
-  },
-  {
-   "payee": "0xe9030014f5dae217d0a152f02a043567b16c1abf",
-   "name": "BlockRun",
-   "category": "AI inference",
-   "payments": 10466,
-   "usd": 382.1,
-   "share": 0.0055
+   "payments": 17033,
+   "usd": 2560116.94,
+   "share": 0.0079
   },
   {
    "payee": "0x50ebda9da5dc19c302ca059d7b9e06e264936480",
    "name": "APIbase.pro \u2014 Best unified API gateway, compare 1385 tools a",
    "category": "x402scan origin",
-   "payments": 10118,
-   "usd": 13.1,
-   "share": 0.0053
+   "payments": 10268,
+   "usd": 13.29,
+   "share": 0.0048
   },
   {
-   "payee": "0x4ac260ff69bca89764b230431a3b991521162cf5",
-   "name": null,
-   "category": null,
-   "payments": 7615,
-   "usd": 19.14,
-   "share": 0.004
+   "payee": "0xe9030014f5dae217d0a152f02a043567b16c1abf",
+   "name": "BlockRun",
+   "category": "AI inference",
+   "payments": 9384,
+   "usd": 331.78,
+   "share": 0.0044
   }
  ]
 }
